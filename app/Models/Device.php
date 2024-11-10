@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Device extends Model
 {
     protected $guarded = [];
 
-    public function Device() {
-        return $this->hasMany(Device::class);
+    public function Room() {
+        return $this->belongsTo(Room::class);
     }
 }

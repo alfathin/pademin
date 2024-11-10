@@ -12,7 +12,8 @@ class RoomController extends Controller
 {
     public function view(){
         return view('admin.rooms', [
-            'rooms' => Room::all()
+            'rooms' => Room::all(),
+            'title' => 'Ruangan'
         ]);
     }
 
@@ -34,13 +35,13 @@ class RoomController extends Controller
 
     public function postEdit(Request $request, $id){
         try {
+            $room = Room::findOrFail($id);
             $data = $request->validate([
-                'name' => 'required|max:100|unique:rooms,name',
+                'name' => 'required|max:100|unique:rooms,name,' . $room->id,
                 'temperature' => 'nullable|numeric',
                 'smoke_level' => 'nullable|integer',
             ]);
 
-            $room = Room::findOrFail($id);
 
             $room->name = $data['name'];
             $room->temperature = $data['temperature'] ?? null;
