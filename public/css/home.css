@@ -1,0 +1,18 @@
+/* Gaya untuk section utama */
+.main-section {
+    background-color: #f8f9fa;
+    padding: 50px;
+}
+.status-data, .gambar-alat, .faq-section {
+    padding: 50px 0;
+}
+.status-box {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    text-align: center;
+}
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 0;
+}
