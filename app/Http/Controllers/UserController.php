@@ -55,4 +55,48 @@ class UserController extends Controller
                              ->withInput();
         }
     }
+
+    public function view(){
+        return view('admin.users', [
+            'title' => 'Users',
+            'users' => User::where('role', 'user')->get()
+        ]);
+    }
+
+    public function postEdit(Request $request, $id){
+        $user = User::findOrFail($id);
+        $request->validate([
+            'username' => 'required|max:50|unique:users,username,' . $user->id,
+            'email' => 'required|email|max:100|unique:users,email,'. $user->id,
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->username = $request->username;
+
+
+        if ($request->hasFile('image')) {
+            if ($user->image && file_exists(public_path($user->image))) {
+                unlink(public_path($user->image)); // Menghapus file dari direktori publik
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('user'), $imageName);
+
+            $user->image = 'user/' . $imageName;
+        } else {
+            unset($request->image);
+        }
+
+        $user->save();
+        return redirect('/admin_users')->with('success', 'Data user berhasil diubah!');
+    }
+
+    public function delete($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('admin_users')->with('success', 'Data user berhasil dihapus.');
+    }
 }

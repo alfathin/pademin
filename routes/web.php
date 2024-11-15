@@ -50,4 +50,8 @@ Route::middleware('role:admin')->group(function () {
     Route::post('/edit_device/{id}', [DeviceController::class, 'postEdit']);
     Route::post('/delete_device/{id}', [DeviceController::class, 'delete']);
 
+    Route::get('/admin_users', [UserController::class, 'view']);
+    Route::post('/edit_user/{id}', [UserController::class, 'postEdit']);
+    Route::post('/delete_user/{id}', [UserController::class, 'delete']);
+
 });
