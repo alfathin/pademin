@@ -126,7 +126,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/admin_monitoring" class="nav-link"><img src="{{asset('img/logo.png')}}" alt=""></a>
+        <a href="/admin_dashboard" class="nav-link"><img src="{{asset('img/logo.png')}}" alt=""></a>
         <a href="/admin_rooms" class="nav-link"><i class="bi bi-houses"></i></a>
         <a href="/admin_devices" class="nav-link"><i class="bi bi-gear"></i></a>
         <a href="/admin_users" class="nav-link"><i class="bi bi-person"></i></a>

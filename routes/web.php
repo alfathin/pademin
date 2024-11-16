@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Models\Monitoring;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
@@ -29,16 +31,6 @@ Route::get('/register', function () {
 });
 
 Route::middleware('role:admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard', [
-            'title' => 'Dashboard'
-        ]);
-    });
-    Route::get('/user_management', function () {
-        return view('user_management', [
-            'title' => 'Kelola User'
-        ]);
-    });
 
     Route::get('/admin_rooms', [RoomController::class, 'view']);
     Route::post('/admin_rooms', [RoomController::class, 'add']);
@@ -53,5 +45,10 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/admin_users', [UserController::class, 'view']);
     Route::post('/edit_user/{id}', [UserController::class, 'postEdit']);
     Route::post('/delete_user/{id}', [UserController::class, 'delete']);
+    Route::post('/role_admin/{id}', [UserController::class, 'admin']);
+    
+    Route::get('/admin_dashboard', [MonitoringController::class, 'view']);
+    Route::get('/admin_monitoring/{id}', [MonitoringController::class, 'viewMonitoring']);
+    Route::post('/admin_monitoring/{id}', [MonitoringController::class, 'add']);
 
 });

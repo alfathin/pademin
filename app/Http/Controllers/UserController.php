@@ -22,7 +22,7 @@ class UserController extends Controller
 
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard')->with('success', $msg);
+                return redirect()->intended('/admin_dashboard')->with('success', $msg);
             }
             $request->session()->regenerate();
             return redirect()->intended('/')->with('success', $msg);
@@ -98,5 +98,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('admin_users')->with('success', 'Data user berhasil dihapus.');
+    }
+
+    public function admin($id){
+        $user = User::findOrFail($id);
+        $user->role = 'admin';
+        $user->save();
+        return redirect('admin_users')->with('success', 'Berhasil Menjadikan admin.');
     }
 }

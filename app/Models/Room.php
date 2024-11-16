@@ -8,7 +8,11 @@ class Room extends Model
 {
     protected $guarded = [];
 
-    public function Device() {
+    public function device() {
         return $this->hasMany(Device::class);
+    }
+
+    public function monitoring() {
+        return $this->hasMany(Monitoring::class);
     }
 }

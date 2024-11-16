@@ -62,11 +62,15 @@
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-end">
                         <div class="d-flex justify-content-end">
+                            <form action="/role_admin/{{$user->id}}" method="POST" onsubmit="return confirm('Apakah Kamu Yakin Menjadikan Admin?')">
+                                @csrf
+                                <button type="submit" class="btn btn-success me-2">Jadikan Admin</button>
+                            </form>
+                            <button class="btn btn-warning me-2" onclick="editUser({{ $user->id }}, '{{ $user->username }}', '{{ $user->image }}', '{{ $user->email }}')">Edit</button>
                             <form action="/delete_user/{{$user->id}}" method="POST" onsubmit="return confirm('Apakah Kamu yakin Ingin Menghapus Ini?')">
                                 @csrf
                                 <button type="submit" class="btn btn-danger me-2">Delete</button>
                             </form>
-                            <button class="btn btn-warning" onclick="editUser({{ $user->id }}, '{{ $user->username }}', '{{ $user->image }}', '{{ $user->email }}')">Edit</button>
                         </div>
                     </td>                    
                 </tr>

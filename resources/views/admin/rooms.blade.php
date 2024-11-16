@@ -80,10 +80,12 @@
     <table class="table table-striped mb-5">
         <thead>
             <tr>
-            <th scope="col" class="text-center">Nama Ruangan</th>
-            <th scope="col" class="text-center">Suhu</th>
-            <th scope="col" class="text-center">Level Asap</th>
-            <th scope="col"></th>
+                <th scope="col" class="text-center">Nama Ruangan</th>
+                <th scope="col" class="text-center">Suhu</th>
+                <th scope="col" class="text-center">Level Asap</th>
+                <th scope="col" class="text-center">Tanggal</th>
+                <th scope="col" class="text-center">Waktu</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -92,16 +94,21 @@
                     <td class="text-center">{{ $room->name }}</td>
                     <td class="text-center">{{ $room->temperature }}</td>
                     <td class="text-center">{{ $room->smoke_level }}</td>
+                    <!-- Kolom untuk tanggal -->
+                    <td class="text-center">{{ $room->updated_at->format('d-m-Y') }}</td>
+                    <!-- Kolom untuk waktu -->
+                    <td class="text-center">{{ $room->updated_at->timezone('Asia/Jakarta')->format('H:i') }}</td>
                     <td class="justify-content-end d-flex gap-2">
-                        <form action="/delete_room/{{$room->id}}" method="POST" onsubmit="return confirm('Apakah Kamu yakin Ingin Menghapus Ini?')">
+                        <form action="/delete_room/{{ $room->id }}" method="POST" onsubmit="return confirm('Apakah Kamu yakin Ingin Menghapus Ini?')">
                             @csrf
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         <button class="btn btn-warning" onclick="editRoom({{ $room->id }}, '{{ $room->name }}', '{{ $room->temperature }}', '{{ $room->smoke_level }}')">Edit</button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table>    
 </div>
 @endsection
 

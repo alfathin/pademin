@@ -101,12 +101,14 @@
     <table class="table table-striped mb-5">
         <thead>
             <tr>
-            <th scope="col" class="text-center">Nama Alat</th>
-            <th scope="col" class="text-center">Tekanan Air (kPa)</th>
-            <th scope="col" class="text-center">Persentase Batre (%)</th>
-            <th scope="col" class="text-center">Sensivitas Servo (%)</th>
-            <th scope="col" class="text-center">Lokasi Alat Terpasang</th>
-            <th scope="col"></th>
+                <th scope="col" class="text-center">Nama Alat</th>
+                <th scope="col" class="text-center">Tekanan Air (kPa)</th>
+                <th scope="col" class="text-center">Persentase Batre (%)</th>
+                <th scope="col" class="text-center">Sensivitas Servo (%)</th>
+                <th scope="col" class="text-center">Lokasi Alat Terpasang</th>
+                <th scope="col" class="text-center">Tanggal</th>
+                <th scope="col" class="text-center">Waktu</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -117,16 +119,21 @@
                     <td class="text-center">{{ $device->battery_percentage }}</td>
                     <td class="text-center">{{ $device->servo_setting }}</td>
                     <td class="text-center">{{ optional($device->room)->name }}</td>
+                    <!-- Kolom Tanggal -->
+                    <td class="text-center">{{ $device->updated_at->format('d-m-Y') }}</td>
+                    <!-- Kolom Waktu -->
+                    <td class="text-center">{{ $device->updated_at->timezone('Asia/Jakarta')->format('H:i') }}</td>
                     <td class="justify-content-end d-flex gap-2">
-                        <form action="/delete_device/{{$device->id}}" method="POST" onsubmit="return confirm('Apakah Kamu yakin Ingin Menghapus Ini?')">
+                        <form action="/delete_device/{{ $device->id }}" method="POST" onsubmit="return confirm('Apakah Kamu yakin Ingin Menghapus Ini?')">
                             @csrf
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>
                         <button class="btn btn-warning" onclick="editDevice({{ $device->id }}, '{{ $device->name }}', '{{ $device->water_pressure }}', '{{ $device->battery_percentage }}', '{{ $device->servo_setting }}', '{{ optional($device->room)->id }}')">Ubah</button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table>     
 </div>
 @endsection
 
