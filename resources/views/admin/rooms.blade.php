@@ -92,8 +92,8 @@
             @foreach ($rooms as $room)    
                 <tr>
                     <td class="text-center">{{ $room->name }}</td>
-                    <td class="text-center">{{ $room->temperature }}</td>
-                    <td class="text-center">{{ $room->smoke_level }}</td>
+                    <td class="text-center">{{ $room->temperature }}°C</td>
+                    <td class="text-center">{{ $room->smoke_level }}%</td>
                     <!-- Kolom untuk tanggal -->
                     <td class="text-center">{{ $room->updated_at->format('d-m-Y') }}</td>
                     <!-- Kolom untuk waktu -->

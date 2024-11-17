@@ -30,6 +30,14 @@ Route::get('/register', function () {
     ]);
 });
 
+Route::get('/profile', [UserController::class, 'userView']);
+Route::post('/profile', [UserController::class, 'ubahPassword'])->name('profile');
+Route::post('/edit_profile/{id}', [UserController::class, 'editProfile']);
+
+Route::get('/rooms', [RoomController::class, 'userView']);
+Route::get('/room/{id}', [RoomController::class, 'monitoring']);
+
+
 Route::middleware('role:admin')->group(function () {
 
     Route::get('/admin_rooms', [RoomController::class, 'view']);

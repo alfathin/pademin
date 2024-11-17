@@ -106,4 +106,66 @@ class UserController extends Controller
         $user->save();
         return redirect('admin_users')->with('success', 'Berhasil Menjadikan admin.');
     }
+
+    public function userView() {
+        return view('profile', [
+            'title' => 'Profile',
+        ]);
+    }
+
+    public function editProfile(Request $request, $id){
+        $user = User::findOrFail($id);
+        $request->validate([
+            'username' => 'required|max:50|unique:users,username,' . $user->id,
+            'email' => 'required|email|max:100|unique:users,email,'. $user->id,
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->username = $request->username;
+
+
+        if ($request->hasFile('image')) {
+            if ($user->image && file_exists(public_path($user->image))) {
+                unlink(public_path($user->image)); // Menghapus file dari direktori publik
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('user'), $imageName);
+
+            $user->image = 'user/' . $imageName;
+        } else {
+            unset($request->image);
+        }
+
+        $user->save();
+        return redirect('/profile')->with('success', 'Data user berhasil diubah!');
+    }
+
+    public function ubahPassword(Request $request){
+        try {
+            $request->validate([
+                'password1' => 'required|min:8',
+                'password2' => 'required|min:8',
+                'password3' => 'required|min:8',
+            ]);
+            if (!Hash::check($request->password1, Auth::user()->password)) {
+                return back()->with('loginError', 'Password lama anda salah!');
+            }
+            if ($request->password2 != $request->password3) {
+                return back()->with('loginError', 'Password baru anda tidak sesuai!');
+            }
+            $user = Auth::user();
+            $user->password = Hash::make($request->password3);
+            $user->save();
+            return redirect('/profile')->with('success', 'Berhasil Mengubah password.');
+    
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                             ->withErrors($e->validator)
+                             ->withInput();
+        }
+    }
 }

@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="suhu" class="form-label">Tekanan Air : </label>
-                        <input type="number" class="form-control" id="water_pressure" placeholder="kPa " name="water_pressure">
+                        <input type="number" class="form-control" id="water_pressure" placeholder="bar " name="water_pressure">
                     </div>
                     <div class="mb-3">
                         <label for="level_asap" class="form-label">Persentase Batre : </label>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="suhu" class="form-label">Tekanan Air : </label>
-                        <input type="number" class="form-control" id="water_pressureE" placeholder="kPa " name="water_pressure">
+                        <input type="number" class="form-control" id="water_pressureE" placeholder="bar" name="water_pressure">
                     </div>
                     <div class="mb-3">
                         <label for="level_asap" class="form-label">Persentase Batre : </label>
@@ -102,7 +102,7 @@
         <thead>
             <tr>
                 <th scope="col" class="text-center">Nama Alat</th>
-                <th scope="col" class="text-center">Tekanan Air (kPa)</th>
+                <th scope="col" class="text-center">Tekanan Air (bar)</th>
                 <th scope="col" class="text-center">Persentase Batre (%)</th>
                 <th scope="col" class="text-center">Sensivitas Servo (%)</th>
                 <th scope="col" class="text-center">Lokasi Alat Terpasang</th>
