@@ -1,7 +1,7 @@
 @extends('template.main')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/management.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/management.css') }}"> --}}
 @endsection
 
 @section('content')

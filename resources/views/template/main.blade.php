@@ -52,6 +52,91 @@
             color: white;
             padding: 40px 0;
         }
+        .container-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60vh;
+    margin-top: 100px;
+    width: 60%;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  .left-section {
+    max-width: 50%;
+  }
+  .right-section {
+    width: 400px; /* Mengurangi lebar maksimal */
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    padding: 20px; /* Mengurangi padding */
+  }
+  .form-control-custom {
+    border-radius: 25px;
+    background-color: #f0f3ff;
+    padding: 8px 15px; /* Mengurangi padding */
+  }
+  .btn-custom {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 8px; /* Mengurangi padding */
+    border-radius: 25px;
+    font-weight: bold;
+  }
+  .btn-read-more {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 15px; /* Mengurangi padding */
+  }
+  /* Styling tambahan untuk responsivitas */
+  @media (max-width: 768px) {
+    .container-custom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .left-section, .right-section {
+      max-width: 100%;
+    }
+    .left-section {
+      margin-bottom: 20px;
+    }
+  }
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    background-color: #f8faff;
+  }
+  .status-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #2b2b2b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 10px;
+  }
+  .slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-container input[type="range"] {
+    width: 70%;
+  }
     </style>
 </head>
 <body>
